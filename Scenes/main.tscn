@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://qdojyqmhshuh"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_dr64f"]
+[ext_resource type="PackedScene" uid="uid://cfy0hk1ugrycc" path="res://Scenes/navigation_button.tscn" id="2_elew8"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dr64f")
+
+[node name="Left" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_right = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Left"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.211765, 0.262745, 0.341176, 1)
+
+[node name="NavigationButton" parent="Left/ColorRect" instance=ExtResource("2_elew8")]
+layout_mode = 1
+size_flags_vertical = 4
+decrease = true
+
+[node name="Middle" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Middle"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.116098, 0.149602, 0.201155, 1)
+
+[node name="Right" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Right"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.211765, 0.262745, 0.341176, 1)
+
+[node name="NavigationButton2" parent="Right/ColorRect2" instance=ExtResource("2_elew8")]
+layout_mode = 1
+offset_left = -22.5
+offset_right = 22.5
+text = "Next"
