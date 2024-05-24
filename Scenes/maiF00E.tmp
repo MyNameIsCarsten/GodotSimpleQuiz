@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qdojyqmhshuh"]
+[gd_scene load_steps=11 format=3 uid="uid://qdojyqmhshuh"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dr64f"]
 [ext_resource type="PackedScene" uid="uid://cfy0hk1ugrycc" path="res://Scenes/navigation_button.tscn" id="2_elew8"]
@@ -9,8 +9,6 @@
 [ext_resource type="Script" path="res://Scripts/PopupPanel.gd" id="6_fn5ge"]
 [ext_resource type="Script" path="res://Scripts/GameOver.gd" id="6_vsxq0"]
 [ext_resource type="Script" path="res://Scripts/Restart.gd" id="7_awtvi"]
-[ext_resource type="Script" path="res://Scripts/Select different Quiz.gd" id="10_cjcwy"]
-[ext_resource type="Script" path="res://Scripts/QuizContainer.gd" id="11_otqwq"]
 
 [sub_resource type="GDScript" id="GDScript_5s5qe"]
 script/source = "extends Button
@@ -148,9 +146,8 @@ text = "Submit"
 script = ExtResource("5_anq1y")
 
 [node name="PopupPanel" type="PopupPanel" parent="Middle/ColorRect3/Control"]
-mode = 4
 initial_position = 2
-size = Vector2i(250, 240)
+size = Vector2i(124, 109)
 visible = true
 script = ExtResource("6_fn5ge")
 
@@ -160,20 +157,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -121.0
-offset_top = -116.0
-offset_right = 121.0
-offset_bottom = 116.0
+offset_left = -58.0
+offset_top = -50.5
+offset_right = 58.0
+offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Middle/ColorRect3/Control/PopupPanel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-text = "When do you want to repeat this question again?"
-horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="Easy" type="Button" parent="Middle/ColorRect3/Control/PopupPanel/VBoxContainer"]
 layout_mode = 2
@@ -257,49 +246,9 @@ text = "Restart Quiz
 "
 script = ExtResource("7_awtvi")
 
-[node name="Select different Quiz" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Select a different Quiz"
-script = ExtResource("10_cjcwy")
-
-[node name="GameStart" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="GameStart"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.188235, 0.223529, 0.317647, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameStart/ColorRect"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -104.0
-offset_right = 104.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="GameStart/ColorRect/VBoxContainer"]
-layout_mode = 2
-text = "Howdy fellow learner, which quiz would you like to practice?"
-
-[node name="QuizContainer" type="VBoxContainer" parent="GameStart/ColorRect/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-script = ExtResource("11_otqwq")
-
 [connection signal="pressed" from="Middle/ColorRect3/Control/Submit" to="Middle/ColorRect3/Control/CorrectAnswer" method="_on_submit_pressed"]
 [connection signal="pressed" from="Middle/ColorRect3/Control/Submit" to="Middle/ColorRect3/Control/Submit" method="_on_pressed"]
 [connection signal="pressed" from="Middle/ColorRect3/Control/PopupPanel/VBoxContainer/Easy" to="Middle/ColorRect3/Control/Submit" method="_on_easy_pressed"]
 [connection signal="pressed" from="Middle/ColorRect3/Control/PopupPanel/VBoxContainer/Middle" to="Middle/ColorRect3/Control/Submit" method="_on_middle_pressed"]
 [connection signal="pressed" from="Middle/ColorRect3/Control/PopupPanel/VBoxContainer/Hard" to="Middle/ColorRect3/Control/Submit" method="_on_hard_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Restart" to="GameOver/ColorRect/VBoxContainer/Restart" method="_on_pressed"]
-[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Select different Quiz" to="GameOver/ColorRect/VBoxContainer/Select different Quiz" method="_on_pressed"]

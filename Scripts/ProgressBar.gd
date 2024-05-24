@@ -7,6 +7,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	value = float(Global.current_question + 1)  / float(Global.quiz_list.size()) * 100
 

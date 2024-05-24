@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qdojyqmhshuh"]
+[gd_scene load_steps=14 format=3 uid="uid://qdojyqmhshuh"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dr64f"]
 [ext_resource type="PackedScene" uid="uid://cfy0hk1ugrycc" path="res://Scenes/navigation_button.tscn" id="2_elew8"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/GameOver.gd" id="6_vsxq0"]
 [ext_resource type="Script" path="res://Scripts/Restart.gd" id="7_awtvi"]
 [ext_resource type="Script" path="res://Scripts/Select different Quiz.gd" id="10_cjcwy"]
+[ext_resource type="PackedScene" uid="uid://cx1hiwthdit5u" path="res://Scenes/quiz_start_button.tscn" id="10_ppywc"]
 [ext_resource type="Script" path="res://Scripts/QuizContainer.gd" id="11_otqwq"]
 
 [sub_resource type="GDScript" id="GDScript_5s5qe"]
@@ -295,6 +296,9 @@ text = "Howdy fellow learner, which quiz would you like to practice?"
 layout_mode = 2
 alignment = 1
 script = ExtResource("11_otqwq")
+
+[node name="QuizStartButton" parent="GameStart/ColorRect/VBoxContainer/QuizContainer" instance=ExtResource("10_ppywc")]
+layout_mode = 2
 
 [connection signal="pressed" from="Middle/ColorRect3/Control/Submit" to="Middle/ColorRect3/Control/CorrectAnswer" method="_on_submit_pressed"]
 [connection signal="pressed" from="Middle/ColorRect3/Control/Submit" to="Middle/ColorRect3/Control/Submit" method="_on_pressed"]
