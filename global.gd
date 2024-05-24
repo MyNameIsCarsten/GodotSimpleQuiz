@@ -3,45 +3,24 @@ extends Node
 var quiz_list = [
 	{ 
 		"Question": "Question 1",
-		"Answers": [
-				{
-				"Text": "Answer 1",
-				"isCorrect": true
-				},
-				{
-				"Text": "Answer 2",
-				"isCorrect": false
-				},
-				{
-				"Text": "Answer 3",
-				"isCorrect": false
-				},
-				{
-				"Text": "Answer 4",
-				"isCorrect": false
-				}
-			]
+		"Answer": "Answer 1"
 	},
 	{ 
 		"Question": "Question 2",
-		"Answers": [
-				{
-				"Text": "Answer 1",
-				"isCorrect": true
-				},
-				{
-				"Text": "Answer 2",
-				"isCorrect": false
-				},
-				{
-				"Text": "Answer 3",
-				"isCorrect": false
-				},
-				{
-				"Text": "Answer 4",
-				"isCorrect": false
-				}
-			]
+		"Answer": "Answer 2"
+	},
+	{ 
+		"Question": "Question 3",
+		"Answer": "Answer 3"
+	},
+	{ 
+		"Question": "Question 4",
+		"Answer": "Answer 4"
 	}
 ]
 var current_question = 0
+
+func _ready():
+	# Randomize the order of the array
+	quiz_list.shuffle()
+	

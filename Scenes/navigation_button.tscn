@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cfy0hk1ugrycc"]
 
-[ext_resource type="Script" path="res://Scenes/navigation_button.gd" id="1_eektb"]
+[ext_resource type="Script" path="res://Scripts/navigation_button.gd" id="1_eektb"]
 
 [node name="NavigationButton" type="Button"]
 anchors_preset = 8

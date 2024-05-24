@@ -1,18 +1,20 @@
 extends Button
 
 @export var decrease: bool = false
+@onready var correct_answer = $"../../../Middle/ColorRect3/Control/CorrectAnswer"
+@onready var main = $"../../.."
+@onready var game_over = $"../../../GameOver"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Global.current_question >= Global.quiz_list.size() && !decrease:
-		visible = false
-		Global.current_question = Global.quiz_list.size()
+		game_over.visible = true
+		
 	elif Global.current_question <= 0 && decrease:
 		visible = false
 		Global.current_question = 0
@@ -24,11 +26,13 @@ func _on_pressed():
 		increase_current_question()
 	else:
 		decrease_current_question()
-	print("Current Question: ", Global.current_question)
-	print("Quiz Length: ", Global.quiz_list.size())	
+	correct_answer.text = ""
+	
 	
 func increase_current_question():
 	Global.current_question += 1
+	if Global.current_question + 1 == Global.quiz_list.size():
+		text = "Finish Quiz"
 	
 
 func decrease_current_question():
