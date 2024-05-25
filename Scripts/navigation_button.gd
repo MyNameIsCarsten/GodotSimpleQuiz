@@ -1,10 +1,10 @@
 extends Button
 
 @export var decrease: bool = false
-@onready var correct_answer = $"../../../Middle/ColorRect3/Control/CorrectAnswer"
-@onready var main = $"../../.."
-@onready var game_over = $"../../../GameOver"
-@onready var submit = $"../../../Middle/ColorRect3/Control/Submit"
+@onready var correct_answer = $"../../../../Middle/ColorRect3/Control/CorrectAnswer"
+@onready var main = $"../../../.."
+@onready var game_over = $"../../../../GameOver"
+@onready var submit = $"../../../../Middle/ColorRect3/Control/Submit"
 
 
 # Called when the node enters the scene tree for the first time.
