@@ -1,5 +1,7 @@
 extends Button
 
+@onready var settings_pop_up = $"../../../../SettingsPopUp"
+
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -14,4 +16,5 @@ extends Button
 
 
 func _on_pressed():
-	pass # Replace with function body.
+	settings_pop_up.visible = true
+

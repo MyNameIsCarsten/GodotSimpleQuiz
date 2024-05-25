@@ -1,9 +1,8 @@
 extends Button
 
 @onready var game_over = $"../../.."
-@onready var navigation_button_2 = $"../../../../Right/ColorRect2/NavigationButton2"
 @onready var game_start = $"../../../../GameStart"
-
+@onready var navigation_button_2 = $"../../../../Middle/Right/ColorRect2/NavigationButton2"
 
 func _on_pressed():
 	Global.current_question = 0

@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://qdojyqmhshuh"]
+[gd_scene load_steps=15 format=3 uid="uid://qdojyqmhshuh"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dr64f"]
 [ext_resource type="PackedScene" uid="uid://cfy0hk1ugrycc" path="res://Scenes/navigation_button.tscn" id="2_elew8"]
-[ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="2_lw70v"]
-[ext_resource type="Script" path="res://Scripts/Load JSON.gd" id="3_7dra4"]
+[ext_resource type="PackedScene" uid="uid://buuni5rcmdxnj" path="res://Scenes/top.tscn" id="2_jvuum"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="3_wow6l"]
 [ext_resource type="Script" path="res://Scripts/CorrectAnswer.gd" id="4_rnvdm"]
 [ext_resource type="Script" path="res://Scripts/Submit.gd" id="5_anq1y"]
@@ -13,8 +12,6 @@
 [ext_resource type="Script" path="res://Scripts/Restart.gd" id="7_awtvi"]
 [ext_resource type="Script" path="res://Scripts/Select different Quiz.gd" id="10_cjcwy"]
 [ext_resource type="Script" path="res://Scripts/QuizContainer.gd" id="11_otqwq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e33kb"]
 
 [sub_resource type="GDScript" id="GDScript_5s5qe"]
 script/source = "extends Button
@@ -34,6 +31,10 @@ func _on_pressed():
 	print(\"Easy\")
 "
 
+[sub_resource type="SystemFont" id="SystemFont_2fsn6"]
+font_names = PackedStringArray("Monospace")
+font_italic = true
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -43,52 +44,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dr64f")
 
-[node name="Top" type="HBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_constants/separation = 0
-
-[node name="ColorRect" type="ColorRect" parent="Top"]
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.121569, 0.145098, 0.0862745, 1)
-
-[node name="MenuButton" type="Button" parent="Top/ColorRect"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = -1.0
-offset_right = 86.0
-offset_bottom = 30.0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_focus_color = Color(1, 0.917647, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_e33kb")
-text = "Settings"
-flat = true
-script = ExtResource("2_lw70v")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Top/ColorRect"]
-z_index = 1
-layout_mode = 0
-offset_left = 17.0
-offset_top = 31.0
-offset_right = 118.0
-offset_bottom = 180.0
-
-[node name="Load JSON" type="Button" parent="Top/ColorRect/VBoxContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Load JSON"
-flat = true
-script = ExtResource("3_7dra4")
-
-[node name="ColorRect" type="ColorRect" parent="Top/ColorRect/VBoxContainer"]
-z_index = 1
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.121569, 0.145098, 0.192157, 1)
+grow_vertical = 2
+color = Color(0.121569, 0.145098, 0.133333, 1)
 
 [node name="Middle" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -304,11 +267,11 @@ text = "Select a different Quiz"
 script = ExtResource("10_cjcwy")
 
 [node name="GameStart" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -327,20 +290,30 @@ offset_left = -104.0
 offset_right = 104.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 alignment = 1
+script = ExtResource("11_otqwq")
 
 [node name="Label" type="Label" parent="GameStart/ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Howdy fellow learner, which quiz would you like to practice?"
 
-[node name="QuizContainer" type="VBoxContainer" parent="GameStart/ColorRect/VBoxContainer"]
+[node name="Label2" type="Label" parent="GameStart/ColorRect/VBoxContainer"]
 layout_mode = 2
-alignment = 1
-script = ExtResource("11_otqwq")
+theme_override_colors/font_color = Color(0.513233, 0.513233, 0.513233, 1)
+theme_override_fonts/font = SubResource("SystemFont_2fsn6")
+text = "Select a JSON-file via the settings menu."
+horizontal_alignment = 1
 
-[connection signal="gui_input" from="Top/ColorRect/MenuButton" to="Top/ColorRect/MenuButton" method="_on_gui_input"]
-[connection signal="pressed" from="Top/ColorRect/MenuButton" to="Top/ColorRect/MenuButton" method="_on_pressed"]
-[connection signal="pressed" from="Top/ColorRect/VBoxContainer/Load JSON" to="Top/ColorRect/VBoxContainer/Load JSON" method="_on_pressed"]
+[node name="Top" parent="." instance=ExtResource("2_jvuum")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+grow_horizontal = 1
+
+[node name="TextEdit" parent="Top/ColorRect/TabContainer/Load JSON/VBoxContainer" index="1"]
+placeholder_text = "E.g. C:\\Users\\quiz.json"
+
 [connection signal="pressed" from="Middle/Center/ColorRect3/Control/Submit" to="Middle/Center/ColorRect3/Control/CorrectAnswer" method="_on_submit_pressed"]
 [connection signal="pressed" from="Middle/Center/ColorRect3/Control/Submit" to="Middle/Center/ColorRect3/Control/Submit" method="_on_pressed"]
 [connection signal="pressed" from="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer/Easy" to="Middle/Center/ColorRect3/Control/Submit" method="_on_easy_pressed"]
@@ -348,3 +321,5 @@ script = ExtResource("11_otqwq")
 [connection signal="pressed" from="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer/Hard" to="Middle/Center/ColorRect3/Control/Submit" method="_on_hard_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Restart" to="GameOver/ColorRect/VBoxContainer/Restart" method="_on_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Select different Quiz" to="GameOver/ColorRect/VBoxContainer/Select different Quiz" method="_on_pressed"]
+
+[editable path="Top"]
