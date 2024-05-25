@@ -4,7 +4,11 @@
 [ext_resource type="Script" path="res://Scripts/Submit JSON.gd" id="2_0vhaw"]
 [ext_resource type="Script" path="res://Scripts/Exit.gd" id="3_pfy5k"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e33kb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxpu2"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvd65"]
 bg_color = Color(0.121569, 0.145098, 0.192157, 1)
@@ -26,20 +30,20 @@ color = Color(0.121569, 0.145098, 0.0862745, 1)
 visible = false
 custom_minimum_size = Vector2(1250, 960)
 layout_mode = 0
+offset_top = 25.0
 offset_right = 2000.0
-offset_bottom = 2000.0
+offset_bottom = 2025.0
 size_flags_vertical = 4
 color = Color(0, 0, 0, 0.729412)
 
 [node name="MenuButton" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = -15.0
+offset_top = -11.0
 offset_right = 86.0
-offset_bottom = 16.0
+offset_bottom = 20.0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_focus_color = Color(1, 0.917647, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_e33kb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xxpu2")
 text = "Settings"
 flat = true
 script = ExtResource("1_g37fo")
