@@ -18,6 +18,7 @@ func _on_pressed():
 	elif text == "Repeat later":
 		option_popup.visible = true
 		visible = false
+		text = "Submit"
 	else:
 		pass
 
