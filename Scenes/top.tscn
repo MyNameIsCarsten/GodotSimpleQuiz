@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://buuni5rcmdxnj"]
+[gd_scene load_steps=8 format=3 uid="uid://buuni5rcmdxnj"]
 
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="1_g37fo"]
 [ext_resource type="Script" path="res://Scripts/Submit JSON.gd" id="2_0vhaw"]
+[ext_resource type="Script" path="res://Scripts/Reset.gd" id="3_gsahi"]
 [ext_resource type="Script" path="res://Scripts/Exit.gd" id="3_pfy5k"]
 [ext_resource type="Script" path="res://Scripts/MenuButton2.gd" id="4_nr6qm"]
 
@@ -51,7 +52,6 @@ flat = true
 script = ExtResource("1_g37fo")
 
 [node name="TabContainer" type="TabContainer" parent="ColorRect"]
-visible = false
 layout_mode = 0
 offset_left = 310.0
 offset_top = 133.0
@@ -95,6 +95,13 @@ theme_override_constants/h_separation = 10
 text = "Submit"
 script = ExtResource("2_0vhaw")
 
+[node name="Reset" type="Button" parent="ColorRect/TabContainer/Load JSON/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 10
+text = "Reset To Dummy Quiz"
+script = ExtResource("3_gsahi")
+
 [node name="Exit" type="Button" parent="ColorRect/TabContainer/Load JSON/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -104,12 +111,15 @@ script = ExtResource("3_pfy5k")
 
 [node name="Menu" type="MenuButton" parent="ColorRect"]
 layout_mode = 0
+offset_top = -7.0
 offset_right = 143.0
-offset_bottom = 31.0
-text = "Test MenuButton"
+offset_bottom = 24.0
+mouse_default_cursor_shape = 2
+text = "Settings"
 script = ExtResource("4_nr6qm")
 
 [connection signal="gui_input" from="ColorRect/MenuButton" to="ColorRect/MenuButton" method="_on_gui_input"]
 [connection signal="pressed" from="ColorRect/MenuButton" to="ColorRect/MenuButton" method="_on_pressed"]
 [connection signal="pressed" from="ColorRect/TabContainer/Load JSON/VBoxContainer/Submit JSON" to="ColorRect/TabContainer/Load JSON/VBoxContainer/Submit JSON" method="_on_pressed"]
+[connection signal="pressed" from="ColorRect/TabContainer/Load JSON/VBoxContainer/Reset" to="ColorRect/TabContainer/Load JSON/VBoxContainer/Reset" method="_on_pressed"]
 [connection signal="pressed" from="ColorRect/TabContainer/Load JSON/VBoxContainer/Exit" to="ColorRect/TabContainer/Load JSON/VBoxContainer/Exit" method="_on_pressed"]

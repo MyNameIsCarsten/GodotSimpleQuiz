@@ -7,10 +7,12 @@ var current_question = Global.current_question
 
 
 func _ready():
+	Global.load_setting()
 	var question = quiz[current_question]["Question"]
 	var answer = quiz[current_question]["Answer"]
 
 func reset_quiz():
 	print(text_edit.text)
-	Global.quiz_path = text_edit.text
+	Global.settings_dictionary["json_path"] = text_edit.text
+	Global.save_settings()
 	v_box_container.reset_quiz()
