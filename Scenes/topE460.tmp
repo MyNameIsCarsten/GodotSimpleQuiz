@@ -38,7 +38,6 @@ size_flags_vertical = 4
 color = Color(0, 0, 0, 0.729412)
 
 [node name="MenuButton" type="Button" parent="ColorRect"]
-visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = -11.0
@@ -51,7 +50,6 @@ flat = true
 script = ExtResource("1_g37fo")
 
 [node name="TabContainer" type="TabContainer" parent="ColorRect"]
-visible = false
 layout_mode = 0
 offset_left = 310.0
 offset_top = 133.0
@@ -102,7 +100,7 @@ theme_override_constants/h_separation = 10
 text = "Exit"
 script = ExtResource("3_pfy5k")
 
-[node name="Menu" type="MenuButton" parent="ColorRect"]
+[node name="MenuButton2" type="MenuButton" parent="ColorRect"]
 layout_mode = 0
 offset_right = 143.0
 offset_bottom = 31.0
