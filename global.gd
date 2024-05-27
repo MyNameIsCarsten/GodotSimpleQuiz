@@ -33,13 +33,18 @@ func save_settings():
 	file.close()
 	
 func load_setting():
-	# Open save file for writing
-	var file = FileAccess.open(settings_path, FileAccess.READ)
-	# Read from file
-	var data = JSON.parse_string(file.get_as_text())
+	var data: Dictionary
+	if FileAccess.file_exists(settings_path):
+		# Open save file for writing
+		var file = FileAccess.open(settings_path, FileAccess.READ)
+		# Read from file
+		data = JSON.parse_string(file.get_as_text())
+		settings_dictionary["randomize"] = data["randomize"]
+		settings_dictionary["json_path"] = data["json_path"]
+		# Close file
+		file.close()
+	else:
+		settings_dictionary["randomize"] = false
+		settings_dictionary["json_path"] = "res://quiz.json"
+
 	
-	settings_dictionary["randomize"] = data["randomize"]
-	settings_dictionary["json_path"] = data["json_path"]
-	print(data)
-	# Close file
-	file.close()

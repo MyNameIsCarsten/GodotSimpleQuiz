@@ -5,6 +5,7 @@ extends Button
 @onready var main = $"../../../.."
 @onready var game_over = $"../../../../GameOver"
 @onready var submit = $"../../../Center/ColorRect3/Control/Submit"
+@onready var text_edit = $"../../../Center/ColorRect3/Control/TextEdit"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +29,9 @@ func _on_pressed():
 	else:
 		decrease_current_question()
 	correct_answer.text = ""
+	text_edit.text = ""
 	submit.visible = true
+	submit.text = "Submit"
 	
 	
 func increase_current_question():
