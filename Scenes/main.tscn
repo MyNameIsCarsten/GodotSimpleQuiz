@@ -1,35 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://qdojyqmhshuh"]
+[gd_scene load_steps=11 format=3 uid="uid://qdojyqmhshuh"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dr64f"]
 [ext_resource type="PackedScene" uid="uid://cfy0hk1ugrycc" path="res://Scenes/navigation_button.tscn" id="2_elew8"]
 [ext_resource type="PackedScene" uid="uid://buuni5rcmdxnj" path="res://Scenes/top.tscn" id="2_jvuum"]
-[ext_resource type="Script" path="res://Scripts/Label.gd" id="3_wow6l"]
-[ext_resource type="Script" path="res://Scripts/CorrectAnswer.gd" id="4_rnvdm"]
-[ext_resource type="Script" path="res://Scripts/Submit.gd" id="5_anq1y"]
-[ext_resource type="Script" path="res://Scripts/ProgressBar.gd" id="5_uryhi"]
-[ext_resource type="Script" path="res://Scripts/PopupPanel.gd" id="6_fn5ge"]
+[ext_resource type="PackedScene" uid="uid://chjr8l4mgb2jb" path="res://center.tscn" id="3_e2hp3"]
+[ext_resource type="Script" path="res://Scripts/TextEdit.gd" id="4_13o6x"]
 [ext_resource type="Script" path="res://Scripts/GameOver.gd" id="6_vsxq0"]
 [ext_resource type="Script" path="res://Scripts/Restart.gd" id="7_awtvi"]
 [ext_resource type="Script" path="res://Scripts/Select different Quiz.gd" id="10_cjcwy"]
 [ext_resource type="Script" path="res://Scripts/QuizContainer.gd" id="11_otqwq"]
-
-[sub_resource type="GDScript" id="GDScript_5s5qe"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_pressed():
-	print(\"Easy\")
-"
 
 [sub_resource type="SystemFont" id="SystemFont_2fsn6"]
 font_names = PackedStringArray("Monospace")
@@ -78,107 +57,11 @@ layout_mode = 1
 size_flags_vertical = 4
 decrease = true
 
-[node name="Center" type="VBoxContainer" parent="Middle"]
-custom_minimum_size = Vector2(640, 0)
+[node name="Center" parent="Middle" instance=ExtResource("3_e2hp3")]
 layout_mode = 2
-theme_override_constants/separation = 20
 
-[node name="ColorRect3" type="ColorRect" parent="Middle/Center"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.121569, 0.145098, 0.192157, 1)
-
-[node name="Control" type="VBoxContainer" parent="Middle/Center/ColorRect3"]
-custom_minimum_size = Vector2(600, 400)
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -31.5
-offset_right = 31.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 50
-
-[node name="Question" type="Label" parent="Middle/Center/ColorRect3/Control"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Question Text"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-script = ExtResource("3_wow6l")
-
-[node name="TextEdit" type="TextEdit" parent="Middle/Center/ColorRect3/Control"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 12
-wrap_mode = 1
-
-[node name="CorrectAnswer" type="Label" parent="Middle/Center/ColorRect3/Control"]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-script = ExtResource("4_rnvdm")
-
-[node name="Submit" type="Button" parent="Middle/Center/ColorRect3/Control"]
-layout_mode = 2
-text = "Submit"
-script = ExtResource("5_anq1y")
-
-[node name="PopupPanel" type="PopupPanel" parent="Middle/Center/ColorRect3/Control"]
-mode = 4
-initial_position = 2
-size = Vector2i(250, 240)
-visible = true
-script = ExtResource("6_fn5ge")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Middle/Center/ColorRect3/Control/PopupPanel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -121.0
-offset_top = -116.0
-offset_right = 121.0
-offset_bottom = 116.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-text = "When do you want to repeat this question again?"
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="Easy" type="Button" parent="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer"]
-layout_mode = 2
-text = "Repeat Soon"
-script = SubResource("GDScript_5s5qe")
-
-[node name="Middle" type="Button" parent="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer"]
-layout_mode = 2
-text = "Repeat Later"
-
-[node name="Hard" type="Button" parent="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer"]
-layout_mode = 2
-text = "Repeat at End"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Middle/Center"]
-layout_mode = 2
-alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="Middle/Center/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-script = ExtResource("5_uryhi")
+[node name="TextEdit" parent="Middle/Center/ColorRect3/Control" index="1"]
+script = ExtResource("4_13o6x")
 
 [node name="Right" type="VBoxContainer" parent="Middle"]
 custom_minimum_size = Vector2(256, 0)
@@ -201,6 +84,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_vsxq0")
@@ -285,12 +169,8 @@ grow_horizontal = 1
 [node name="TextEdit" parent="Top/ColorRect/TabContainer/Load JSON/VBoxContainer" index="1"]
 placeholder_text = "E.g. C:\\Users\\quiz.json"
 
-[connection signal="pressed" from="Middle/Center/ColorRect3/Control/Submit" to="Middle/Center/ColorRect3/Control/CorrectAnswer" method="_on_submit_pressed"]
-[connection signal="pressed" from="Middle/Center/ColorRect3/Control/Submit" to="Middle/Center/ColorRect3/Control/Submit" method="_on_pressed"]
-[connection signal="pressed" from="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer/Easy" to="Middle/Center/ColorRect3/Control/Submit" method="_on_easy_pressed"]
-[connection signal="pressed" from="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer/Middle" to="Middle/Center/ColorRect3/Control/Submit" method="_on_middle_pressed"]
-[connection signal="pressed" from="Middle/Center/ColorRect3/Control/PopupPanel/VBoxContainer/Hard" to="Middle/Center/ColorRect3/Control/Submit" method="_on_hard_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Restart" to="GameOver/ColorRect/VBoxContainer/Restart" method="_on_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Select different Quiz" to="GameOver/ColorRect/VBoxContainer/Select different Quiz" method="_on_pressed"]
 
+[editable path="Middle/Center"]
 [editable path="Top"]

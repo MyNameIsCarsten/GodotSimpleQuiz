@@ -22,6 +22,7 @@ func reset_quiz():
 		if child is Button:
 			child.queue_free()
 	var quiz_as_text  = FileAccess.get_file_as_string(Global.settings_dictionary["json_path"])
+	print(Global.settings_dictionary["json_path"])
 	var quiz_dict = JSON.parse_string(quiz_as_text)
 	for quiz in quiz_dict:
 		var new_quiz_button = Button.new()

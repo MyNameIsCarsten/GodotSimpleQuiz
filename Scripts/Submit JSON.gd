@@ -5,6 +5,7 @@ extends Button
 @onready var tab_container = $"../../.."
 
 
+
 func _on_pressed():
 	main.reset_quiz()
 	tab_container.visible = false

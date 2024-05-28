@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=3 uid="uid://chjr8l4mgb2jb"]
+
+[ext_resource type="Script" path="res://Scripts/Label.gd" id="1_vyu6u"]
+[ext_resource type="Script" path="res://Scripts/CorrectAnswer.gd" id="2_gg7s7"]
+[ext_resource type="Script" path="res://Scripts/Submit.gd" id="3_6cj7y"]
+[ext_resource type="Script" path="res://Scripts/PopupPanel.gd" id="4_wl7bn"]
+[ext_resource type="Script" path="res://Scripts/ProgressBar.gd" id="5_8q153"]
+
+[sub_resource type="GDScript" id="GDScript_5s5qe"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	print(\"Easy\")
+"
+
+[node name="Center" type="VBoxContainer"]
+custom_minimum_size = Vector2(640, 0)
+theme_override_constants/separation = 20
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.121569, 0.145098, 0.192157, 1)
+
+[node name="Control" type="VBoxContainer" parent="ColorRect3"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_right = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Question" type="Label" parent="ColorRect3/Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Question Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("1_vyu6u")
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect3/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+wrap_mode = 1
+
+[node name="CorrectAnswer" type="Label" parent="ColorRect3/Control"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("2_gg7s7")
+
+[node name="Submit" type="Button" parent="ColorRect3/Control"]
+layout_mode = 2
+text = "Submit"
+script = ExtResource("3_6cj7y")
+
+[node name="PopupPanel" type="PopupPanel" parent="ColorRect3/Control"]
+mode = 4
+initial_position = 2
+size = Vector2i(250, 240)
+visible = true
+script = ExtResource("4_wl7bn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect3/Control/PopupPanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect3/Control/PopupPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "When do you want to repeat this question again?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Easy" type="Button" parent="ColorRect3/Control/PopupPanel/VBoxContainer"]
+layout_mode = 2
+text = "Repeat Soon"
+script = SubResource("GDScript_5s5qe")
+
+[node name="Middle" type="Button" parent="ColorRect3/Control/PopupPanel/VBoxContainer"]
+layout_mode = 2
+text = "Repeat Later"
+
+[node name="Hard" type="Button" parent="ColorRect3/Control/PopupPanel/VBoxContainer"]
+layout_mode = 2
+text = "Repeat at End"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("5_8q153")
+
+[connection signal="pressed" from="ColorRect3/Control/Submit" to="ColorRect3/Control/CorrectAnswer" method="_on_submit_pressed"]
+[connection signal="pressed" from="ColorRect3/Control/Submit" to="ColorRect3/Control/Submit" method="_on_pressed"]
+[connection signal="pressed" from="ColorRect3/Control/PopupPanel/VBoxContainer/Easy" to="ColorRect3/Control/Submit" method="_on_easy_pressed"]
+[connection signal="pressed" from="ColorRect3/Control/PopupPanel/VBoxContainer/Middle" to="ColorRect3/Control/Submit" method="_on_middle_pressed"]
+[connection signal="pressed" from="ColorRect3/Control/PopupPanel/VBoxContainer/Hard" to="ColorRect3/Control/Submit" method="_on_hard_pressed"]

@@ -2,23 +2,22 @@ extends Button
 
 @onready var option_popup = $"../PopupPanel"
 
-#func _ready():
-	#var easy_button = option_popup.get_node("VBoxContainer/Easy")
-	#var middle_button = option_popup.get_node("VBoxContainer/Middle")
-	#var hard_button = option_popup.get_node("VBoxContainer/Hard")
-	#
-	#easy_button.connect("pressed",_on_easy_pressed)
-	#middle_button.connect("pressed", _on_middle_pressed)
-	#hard_button.connect("pressed", _on_hard_pressed)
-
+func _ready():
+	if Global.settings_dictionary["type"] == "Written":
+		text = "Submit"
+	else:
+		text = "Show Answer"
 
 func _on_pressed():
-	if text == "Submit":
+	if text == "Submit" or text == "Show Answer":
 		text = "Repeat later"
 	elif text == "Repeat later":
 		option_popup.visible = true
 		visible = false
-		text = "Submit"
+		if Global.settings_dictionary["type"] == "Written":
+			text = "Submit"
+		else:
+			text = "Show Answer"
 	else:
 		pass
 

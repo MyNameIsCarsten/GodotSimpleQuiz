@@ -29,7 +29,8 @@ func _on_pressed():
 	else:
 		decrease_current_question()
 	correct_answer.text = ""
-	text_edit.text = ""
+	if Global.settings_dictionary["type"] == "Written":
+		text_edit.text = ""
 	submit.visible = true
 	submit.text = "Submit"
 	

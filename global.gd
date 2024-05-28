@@ -8,9 +8,12 @@ var quiz_list = [
 ]
 var current_question = 0
 
+enum quiz_type { INDEX, WRITTEN }
+
 var settings_dictionary = {
 	"randomize": false,
 	"json_path": "res://quiz.json",
+	"type": quiz_type.INDEX,
 }
 
 var settings_path = "user://quiz_settings.json" # %APPDATA%\Roaming\Godot\app_userdata\SimpleQuiz
@@ -22,9 +25,8 @@ func _ready():
 		quiz_list.shuffle()
 	
 func save_settings():
-	var json = JSON.new()
 	# Convert dictionary to JSON
-	var to_json = json.stringify(settings_dictionary)
+	var to_json = JSON.stringify(settings_dictionary)
 	# Open save file for writing
 	var file = FileAccess.open(settings_path, FileAccess.WRITE)
 	# Write to file
@@ -41,10 +43,11 @@ func load_setting():
 		data = JSON.parse_string(file.get_as_text())
 		settings_dictionary["randomize"] = data["randomize"]
 		settings_dictionary["json_path"] = data["json_path"]
+		settings_dictionary["type"] = data["type"]
 		# Close file
 		file.close()
 	else:
 		settings_dictionary["randomize"] = false
 		settings_dictionary["json_path"] = "res://quiz.json"
-
-	
+		settings_dictionary["type"] = quiz_type.INDEX
+		
