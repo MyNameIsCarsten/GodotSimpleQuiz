@@ -3,7 +3,7 @@ extends Button
 @onready var option_popup = $"../PopupPanel"
 
 func _ready():
-	if Global.settings_dictionary["type"] == "Written":
+	if Global.settings_dictionary["type"] == Global.quiz_type.WRITTEN:
 		text = "Submit"
 	else:
 		text = "Show Answer"
@@ -14,7 +14,7 @@ func _on_pressed():
 	elif text == "Repeat later":
 		option_popup.visible = true
 		visible = false
-		if Global.settings_dictionary["type"] == "Written":
+		if Global.settings_dictionary["type"] == Global.quiz_type.WRITTEN:
 			text = "Submit"
 		else:
 			text = "Show Answer"

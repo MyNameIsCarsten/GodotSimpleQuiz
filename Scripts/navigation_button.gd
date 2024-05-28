@@ -29,7 +29,7 @@ func _on_pressed():
 	else:
 		decrease_current_question()
 	correct_answer.text = ""
-	if Global.settings_dictionary["type"] == "Written":
+	if Global.settings_dictionary["type"] ==  Global.quiz_type.WRITTEN:
 		text_edit.text = ""
 	submit.visible = true
 	submit.text = "Submit"

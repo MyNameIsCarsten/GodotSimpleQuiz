@@ -63,6 +63,12 @@ layout_mode = 2
 [node name="TextEdit" parent="Middle/Center/ColorRect3/Control" index="1"]
 script = ExtResource("4_13o6x")
 
+[node name="VBoxContainer" parent="Middle/Center/ColorRect3/Control/PopupPanel" index="1"]
+offset_left = -121.0
+offset_top = -116.0
+offset_right = 121.0
+offset_bottom = 116.0
+
 [node name="Right" type="VBoxContainer" parent="Middle"]
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2

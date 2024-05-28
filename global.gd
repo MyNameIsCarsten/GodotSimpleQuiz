@@ -41,9 +41,11 @@ func load_setting():
 		var file = FileAccess.open(settings_path, FileAccess.READ)
 		# Read from file
 		data = JSON.parse_string(file.get_as_text())
-		settings_dictionary["randomize"] = data["randomize"]
-		settings_dictionary["json_path"] = data["json_path"]
-		settings_dictionary["type"] = data["type"]
+		
+		# Update settings_dictionary with values from data, or set to default if not found
+		settings_dictionary["randomize"] = data.get("randomize", false)
+		settings_dictionary["json_path"] = data.get("json_path", "res://quiz.json")
+		settings_dictionary["type"] = data.get("type", quiz_type.INDEX)
 		# Close file
 		file.close()
 	else:

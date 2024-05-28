@@ -55,14 +55,14 @@ func add_menu_buttons():
 	var type_button_group = ButtonGroup.new()
 	popup.add_radio_check_item("Index", 5, 4)
 	popup.add_radio_check_item("Written", 6, 4)
-	if Global.settings_dictionary["type"] == "Index":
+	if Global.settings_dictionary["type"] == Global.quiz_type.INDEX:
 		popup.set_item_checked(5, true)
-	elif  Global.settings_dictionary["type"] == "Written":
+	elif  Global.settings_dictionary["type"] == Global.quiz_type.WRITTEN:
 		popup.set_item_checked(6, true)
 	else:
 		pass
-	popup.set_item_checked(3, Global.settings_dictionary["type"] == "Index")
-	popup.set_item_checked(4, Global.settings_dictionary["type"] == "Written")
+	popup.set_item_checked(3, Global.settings_dictionary["type"] ==  Global.quiz_type.INDEX)
+	popup.set_item_checked(4, Global.settings_dictionary["type"] ==  Global.quiz_type.WRITTEN)
 	popup.connect("id_pressed", _on_type_id_pressed) 
 
 # Signal handler for item clicks
@@ -85,13 +85,13 @@ func _on_popup_id_pressed(id):
 func _on_type_id_pressed(id):
 	match id:
 		5:
-			Global.settings_dictionary["type"] = "Index"
+			Global.settings_dictionary["type"] =  Global.quiz_type.INDEX
 			popup.set_item_checked(5, true)
 			popup.set_item_checked(6, false)
 			text_edit.visible = false
 			
 		6:
-			Global.settings_dictionary["type"] = "Written"
+			Global.settings_dictionary["type"] =  Global.quiz_type.WRITTEN
 			popup.set_item_checked(5, false)
 			popup.set_item_checked(6, true)
 			text_edit.visible = true
